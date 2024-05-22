@@ -6,7 +6,6 @@ from unittest import TestCase
 import macaroonbakery.bakery as bakery
 import macaroonbakery.checkers as checkers
 import nacl.public
-import six
 from macaroonbakery.bakery import _codec as codec
 
 
@@ -99,16 +98,16 @@ class TestCodec(TestCase):
         # This caveat has been generated from the go code
         # to check the compatibilty
 
-        encrypted_cav = six.b(
-            'eyJUaGlyZFBhcnR5UHVibGljS2V5IjoiOFA3R1ZZc3BlWlN4c'
-            '3hFdmJsSVFFSTFqdTBTSWl0WlIrRFdhWE40cmxocz0iLCJGaX'
-            'JzdFBhcnR5UHVibGljS2V5IjoiSDlqSFJqSUxidXppa1VKd2o'
-            '5VGtDWk9qeW5oVmtTdHVsaUFRT2d6Y0NoZz0iLCJOb25jZSI6'
-            'Ii9lWTRTTWR6TGFxbDlsRFc3bHUyZTZuSzJnVG9veVl0IiwiS'
-            'WQiOiJra0ZuOGJEaEt4RUxtUjd0NkJxTU0vdHhMMFVqaEZjR1'
-            'BORldUUExGdjVla1dWUjA4Uk1sbGJhc3c4VGdFbkhzM0laeVo'
-            '0V2lEOHhRUWdjU3ljOHY4eUt4dEhxejVEczJOYmh1ZDJhUFdt'
-            'UTVMcVlNWitmZ2FNaTAxdE9DIn0=')
+        encrypted_cav = (
+            b'eyJUaGlyZFBhcnR5UHVibGljS2V5IjoiOFA3R1ZZc3BlWlN4c'
+            b'3hFdmJsSVFFSTFqdTBTSWl0WlIrRFdhWE40cmxocz0iLCJGaX'
+            b'JzdFBhcnR5UHVibGljS2V5IjoiSDlqSFJqSUxidXppa1VKd2o'
+            b'5VGtDWk9qeW5oVmtTdHVsaUFRT2d6Y0NoZz0iLCJOb25jZSI6'
+            b'Ii9lWTRTTWR6TGFxbDlsRFc3bHUyZTZuSzJnVG9veVl0IiwiS'
+            b'WQiOiJra0ZuOGJEaEt4RUxtUjd0NkJxTU0vdHhMMFVqaEZjR1'
+            b'BORldUUExGdjVla1dWUjA4Uk1sbGJhc3c4VGdFbkhzM0laeVo'
+            b'0V2lEOHhRUWdjU3ljOHY4eUt4dEhxejVEczJOYmh1ZDJhUFdt'
+            b'UTVMcVlNWitmZ2FNaTAxdE9DIn0=')
         cav = bakery.decode_caveat(tp_key, encrypted_cav)
         self.assertEqual(cav, bakery.ThirdPartyCaveatInfo(
             condition='caveat condition',
